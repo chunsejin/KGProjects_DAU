@@ -1,0 +1,7 @@
+# install NEO4J with apoc and graph-data-science libraries
+docker run -it \
+  --publish=7474:7474 --publish=7687:7687 \
+  --env NEO4J_dbms_security_procedures_unrestricted=gds.*,apoc.* \
+  --env NEO4J_dbms_security_procedures_allowlist=gds.*,apoc.* \
+  --env NEO4JLABS_PLUGINS='["graph-data-science","apoc"]' \
+  neo4j:4.2.11
