@@ -1,0 +1,36 @@
+# mkdir plugins
+# pushd plugins
+
+
+wget -O gds.jar https://github.com/chunsejin/KGProjects_DAU/raw/master/jar/graph-data-science-1.4.1.jar
+wget -O apoc.jar https://github.com/chunsejin/KGProjects_DAU/raw/master/jar/apoc-4.2.0.0.jar
+
+# popd 
+# cd..
+
+
+## for ubunt
+docker run -it \
+  -v $PWD/plugins:/plugins \
+  --publish=7474:7474 --publish=7687:7687 \
+  -e NEO4J_AUTH=none \
+  -e NEO4J_apoc_export_file_enabled=true \
+  -e NEO4J_apoc_import_file_enabled=true \
+  -e NEO4J_apoc_import_file_use__neo4j__config=true \
+  -e NEO4J_dbms_security_procedures_unrestricted=gds.*,apoc.* \
+  -e NEO4J_dbms_security_procedures_allowlist=gds.*,apoc.* \
+  neo4j:4.2.11
+
+
+
+## for power shell
+docker run -it `
+  -v $PWD/plugins:/plugins `
+  --publish=7474:7474 --publish=7687:7687 `
+  -e NEO4J_AUTH=none `
+  -e NEO4J_apoc_export_file_enabled=true `
+  -e NEO4J_apoc_import_file_enabled=true `
+  -e NEO4J_apoc_import_file_use__neo4j__config=true `
+  -e NEO4J_dbms_security_procedures_unrestricted=gds.*,apoc.* `
+  -e NEO4J_dbms_security_procedures_allowlist=gds.*,apoc.* `
+  neo4j:4.2.11
